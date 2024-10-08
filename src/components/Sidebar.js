@@ -1,3 +1,4 @@
+// src/components/Sidebar.js
 import React from "react";
 import "./Sidebar.css";
 
@@ -9,6 +10,8 @@ const Sidebar = ({
   handleMoveBack,
   handleFlipBoard,
   handleHome,
+  gameOver,
+  result,
 }) => {
   const handlePlayFriend = () => {
     resetGame();
@@ -67,43 +70,63 @@ const Sidebar = ({
             Home
           </button>
           <div className="row-buttons">
-            <button className="sidebar-button" onClick={handleMoveBack}>
+            <button
+              className="sidebar-button"
+              onClick={handleMoveBack}
+              disabled={gameOver} // Отключение кнопки при окончании игры
+            >
               Move Back
             </button>
-            <button className="sidebar-button" onClick={handleFlipBoard}>
+            <button
+              className="sidebar-button"
+              onClick={handleFlipBoard}
+              disabled={gameOver} // Отключение кнопки при окончании игры
+            >
               Flip Board
             </button>
           </div>
         </div>
-        <div className="game-info">
-          <div className="game-info-text">
-            <p>Turn: {turn}</p>
-            <h2>Move History</h2>
-            <div className="table-cont">
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>White</th>
-                    <th>Black</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {moveHistory
-                    .slice()
-                    .reverse()
-                    .map(([moveNumber, whiteMove, blackMove], index) => (
-                      <tr key={moveNumber}>
-                        <td>{moveNumber}</td>
-                        <td>{whiteMove}</td>
-                        <td>{blackMove || ""}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
+        {gameOver ? ( // Добавлено
+          <div className="game-result">
+            <div className="game-result-text">
+              <h2>Game is Over</h2>
+              <p>{result}</p>
+              <button className="sidebar-button" onClick={resetGame}>
+                New Game
+              </button>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="game-info">
+            <div className="game-info-text">
+              <p>Ход: {turn}</p>
+              <h2>Move History</h2>
+              <div className="table-cont">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>White</th>
+                      <th>Black</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {moveHistory
+                      .slice()
+                      .reverse()
+                      .map(([moveNumber, whiteMove, blackMove], index) => (
+                        <tr key={moveNumber}>
+                          <td>{moveNumber}</td>
+                          <td>{whiteMove}</td>
+                          <td>{blackMove || ""}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   } else if (gameMode === "online") {
@@ -131,7 +154,7 @@ const Sidebar = ({
         <div className="game-info">
           <div className="game-info-text">
             <p>Bot game is not implemented yet.</p>
-            {/* Placeholder for online game UI */}
+            {/* Placeholder for bot game UI */}
           </div>
         </div>
       </div>

@@ -1,19 +1,27 @@
+// src/components/Chessboard.js
 import React, { useState, useEffect } from "react";
 import "./Chessboard.css";
 
-const Chessboard = ({ gameMode, game, makeMove, lastMove, isFlipped }) => {
+const Chessboard = ({
+  gameMode,
+  game,
+  makeMove,
+  lastMove,
+  isFlipped,
+  gameOver,
+}) => {
   const [selectedSquare, setSelectedSquare] = useState(null);
   const [possibleMoves, setPossibleMoves] = useState([]);
   const [hoveredSquare, setHoveredSquare] = useState(null);
 
-  const isGameActive = gameMode === "local";
+  const isGameActive = gameMode === "local" && !gameOver;
 
   // Reset local state when game resets
   useEffect(() => {
     setSelectedSquare(null);
     setPossibleMoves([]);
     setHoveredSquare(null);
-  }, [game]);
+  }, [game, gameOver]);
 
   const handleSquareClick = (row, col) => {
     if (!isGameActive) return;
@@ -216,11 +224,7 @@ const Chessboard = ({ gameMode, game, makeMove, lastMove, isFlipped }) => {
     return rows;
   };
 
-  return (
-    <div className="chessboard-container">
-      <div className="chessboard">{renderBoard()}</div>
-    </div>
-  );
+  return <div className="chessboard">{renderBoard()}</div>;
 };
 
 export default Chessboard;
