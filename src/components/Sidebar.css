@@ -1,0 +1,97 @@
+.sidebar {
+  background-color: #5c4134;
+  color: #f0e6d2;
+  padding: 20px;
+  border-radius: 2vmin;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 70vmin;
+  max-height: 70vmin;
+  aspect-ratio: 0.6 / 1;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4); /* Добавленная тень */
+}
+
+h1 {
+  font-size: 28px;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  filter: drop-shadow(0px 5px 0px rgba(0, 0, 0, 0.2));
+}
+
+.button-container {
+  width: 100%;
+}
+
+.sidebar-button {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #a66a53;
+  color: #f0e6d2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.2); /* Добавленная тень */
+}
+
+.sidebar-button:hover {
+  background-color: #d17f5b;
+}
+
+.sidebar-button.active {
+  background-color: #d17f5b;
+}
+
+.row-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.row-buttons .sidebar-button {
+  width: 48%; /* Каждая кнопка займет 48% ширины контейнера */
+}
+
+.game-info {
+  background-color: #3d2c23;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  overflow-y: auto;
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.game-info-text {
+  margin: auto;
+  width: 90%;
+}
+
+.game-info-text tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-cont th,
+td {
+  text-align: left;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.table-cont table th:first-child,
+td:first-child {
+  width: 20%; /* 20% от общей ширины таблицы */
+}
+
+.table-cont thead {
+  position: sticky;
+  top: 0;
+  background-color: #3d2c23;
+}
